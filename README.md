@@ -16,8 +16,8 @@ Small docker container based on the official php image with apache.
 Development settings are used by default, do not use for production unless modified.
 Default document root /var/www/html, the optional env var can change it.
 
-docker run --rm --name=php56 \\  
+`docker run --rm --name=php56 \\  
     -e "APACHE_DOCUMENT_ROOT=/new/doc/root" \\  
     -v /project/folder:/new/doc/root \\  
     -p 80:80 \\  
-    rafaelgil83/php5.6-apache:latest
+    rafaelgil83/php5.6-apache:latest`
