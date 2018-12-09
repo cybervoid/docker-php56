@@ -13,6 +13,8 @@ RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 RUN cp /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/
 RUN cp /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/
 RUN pecl install xdebug-2.5.5 && \
+    pear channel-discover htmlpurifier.org && \
+    pear install hp/HTMLPurifier && \
     docker-php-ext-enable xdebug && \
     docker-php-ext-install mysql && \
     echo 'xdebug.remote_port=9000' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
@@ -21,5 +23,7 @@ RUN pecl install xdebug-2.5.5 && \
     echo "xdebug.remote_log=/var/log/apache2/error.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+RUN apt-get update && apt-get install nano sudo && \
+    echo 'alias ll="ls -lah"' >> ~/.bashrc
 
 
